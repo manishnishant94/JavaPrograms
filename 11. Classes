@@ -1,0 +1,173 @@
+package com.nishant;
+
+/**
+ * Created by manis on 5/25/2017.
+ */
+public class Account {
+    private String accountNo;
+    private double balance;
+    private String name;
+    private String email;
+    private String phoneNo;
+    //constructor with empty parameters called default constructor
+    public Account(){
+        // this first line with this calls the other constructor , it must be in first line then it will work
+        this("SBI122345", 2.0, "Default name", "Default mail", "Default Phone Number"); // if parameters are not passed from main then it executes and assigns default value by passing argument to constructor with parameters
+        System.out.println("Empty contructor called");
+
+    }
+    // Constructer with parameters
+    public Account(String number, double balance, String name, String email, String phoneNo){
+
+        this.accountNo = number;
+        this.balance = balance;
+        this.name = name;
+        this.email = email;
+        this.phoneNo = phoneNo;
+        System.out.println(" Constructor with parameters called");
+    }
+
+
+    public void withdrawBlance(double amount){
+        if(this.balance >= amount)
+
+        {
+            this.balance -= amount;
+            System.out.println("Withdrawal of "+ amount+ " processed. Remaining Balance = " + this.balance);
+        }
+        else
+        {
+            System.out.println("Only " + this.balance + " available , withdrawal not processed.");
+        }
+    }
+
+    public void depositBalance(double amount){
+        this.balance+= amount;
+    }
+
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+}
+
+
+package com.nishant;
+
+/**
+ * Created by manis on 5/25/2017.
+ */
+public class VipCustomer {
+    private String name;
+    private double creditLimit;
+    private String email;
+
+    // constructer with all parameters
+    public VipCustomer(String name, double creditLimit, String email) {
+        this.name = name;
+        this.creditLimit = creditLimit;
+        this.email = email;
+        System.out.println("main Constructor executing !");
+    }
+
+    // constructer with two parameters
+    public VipCustomer(String name, double creditLimit) {
+        this(name,creditLimit,"unknown");
+        System.out.println("constructor with two parameter executing");
+    }
+
+    // Default constructor
+    public VipCustomer() {
+        this("Default name", 100000.0, "default Email");
+        System.out.println("EMPTY CONSTRUCTER EXECUTING");
+    }
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public double getCreditLimit() {
+        return creditLimit;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+}
+
+package com.nishant;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Account nishantsAccount = new Account();
+// Default constructer will be called first then it goes to parameter one
+        Account myaccount = new Account("SBI456799", 250.0, "Myname", "myemail.gmail.com", " (987) 236 215");
+// Constructor with parameter called
+
+        nishantsAccount.withdrawBlance(2.0);
+        System.out.println(nishantsAccount.getName());
+        nishantsAccount.depositBalance(500);
+        System.out.println(nishantsAccount.getBalance());
+        System.out.println();
+
+//        myaccount.withdrawBlance(200);
+//        System.out.println(myaccount.getName());
+//        System.out.println(myaccount.getBalance());
+//
+        VipCustomer manish = new VipCustomer();
+        System.out.println(manish.getName());
+        System.out.println(manish.getCreditLimit());
+        System.out.println(manish.getEmail());
+
+        VipCustomer vip1 = new VipCustomer("Vip1", 5000);
+        System.out.println(vip1.getName());
+        System.out.println(vip1.getCreditLimit());
+        System.out.println(vip1.getEmail());
+
+        VipCustomer vip2 = new VipCustomer("Vip1", 5000, "vip2@gmail.com");
+        System.out.println(vip2.getName());
+        System.out.println(vip2.getCreditLimit());
+        System.out.println(vip2.getEmail());
+
+    }
+}
+
+
+
