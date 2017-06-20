@@ -1,0 +1,26 @@
+package com.nishant;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        boolean gameOver = true;
+        int score = 1000;
+        int bonus = 500;
+        int levelCompleted = 5;
+        int finalScore = calculate(gameOver, score, bonus, levelCompleted);
+        System.out.println(finalScore);
+        boolean gameOver2 = false;
+        finalScore = calculate(gameOver2, score, bonus, levelCompleted);
+        System.out.println(finalScore);
+    }
+
+
+    public static int calculate(boolean game, int score, int bonus, int levelcompleted) {
+        if (game) {
+            int finalScore = score + (bonus * levelcompleted);
+            return finalScore;
+        } else
+            return -1;
+    }
+}
