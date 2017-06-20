@@ -1,0 +1,133 @@
+package com.company;
+
+/**
+ * Created by nishantkr on 20/4/17.
+ */
+public class Vehicles {
+    private String name;
+    private String size;
+
+    private int currentVelocity;
+    private int currentDirection;
+
+    public Vehicles(String name, String size) {
+        this.name = name;
+        this.size = size;
+
+        this.currentVelocity = 0;
+        this.currentDirection = 0;
+    }
+    public void steer(int direction){
+        this.currentDirection += direction;
+        System.out.println("Vehicle.steer(): steering at " + currentDirection + " degrees.");
+    }
+    public void move(int direction, int velocity){
+        this.currentDirection = direction;
+        this.currentVelocity = velocity;
+        System.out.println("vehicle.move(): moving at speed " + this.currentVelocity + " in direction " + this.currentDirection );
+    }
+
+    public int getCurrentVelocity() {
+        return currentVelocity;
+    }
+
+    public int getCurrentDirection() {
+        return currentDirection;
+    }
+
+    public void stop()
+    {
+        this.currentVelocity=0;
+        System.out.println("Vehicle.Stop: ");
+    }
+}
+
+
+
+package com.company;
+
+/**
+ * Created by nishantkr on 20/4/17.
+ */
+public class Car extends Vehicles{
+    private int wheels;
+    private int doors;
+    private int gears;
+    private boolean isMaunal;
+
+    private int currentGear;
+
+    public Car(String name, String size, int wheels, int doors, int gears, boolean isMaunal) {
+        super(name, size);
+        this.wheels = wheels;
+        this.doors = doors;
+        this.gears = gears;
+        this.isMaunal = isMaunal;
+        this.currentGear = 1;
+    }
+    public void changeGear(int gear){
+        this.currentGear = gear;
+        System.out.println("Car.setchangeGear(): changed to "+ this.currentGear + " gear");
+    }
+
+    public void changeVelocity(int speed, int direction){
+        move(direction, speed);
+        System.out.println("Car.changeVelocity: velocity ="+ speed + " direction = "+ direction);
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+    }
+}
+
+
+
+package com.company;
+
+/**
+ * Created by nishantkr on 21/4/17.
+ */
+public class Vitara extends Car {
+    private int carServiceMonths;
+
+    public Vitara(int carServiceMonths) {
+        super("Vitara Brezza", "Medium", 4, 4, 4, false);
+        this.carServiceMonths = carServiceMonths;
+    }
+
+    public void accelerate(int rate) {
+        int newvelocity = getCurrentVelocity() + rate;
+        if (newvelocity == 0) {
+            stop();
+        } else if (newvelocity > 0 && newvelocity <= 10) {
+            changeGear(1);
+        } else if (newvelocity > 10 && newvelocity <= 20) {
+            changeGear(2);
+        } else if (newvelocity > 20 && newvelocity <= 30) {
+            changeGear(3);
+        } else {
+            changeGear(4);
+        }
+        if (newvelocity > 0) {
+            changeVelocity(newvelocity, getCurrentDirection());
+        }
+    }
+}
+
+
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Vitara vitara = new Vitara(36);
+        vitara.accelerate(30);
+        vitara.steer(45);
+        vitara.accelerate(30);
+        vitara.stop();
+        System.out.println(vitara.getCurrentVelocity());
+    }
+}
+
+
