@@ -1,0 +1,21 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+	    int myIntValue = 5/3;
+	    float myFloatValue = 5f/3f;
+	     double myDoubleValue = 5d/3d;
+        System.out.println("myInt Value = "+ myIntValue);
+        System.out.println("my Float Value" + myFloatValue);
+        System.out.println("myDouble Value " + myDoubleValue);
+       //  int myTotal = (int) (myIntValue + myFloatValue + myDoubleValue);
+        //System.out.println(myTotal);
+    // Convet pound to kilograms
+         double pound = 1d;
+         double kiloGram = pound * 0.45359237d;
+        System.out.println("Kilograms =" + kiloGram);
+
+
+    }
+}
