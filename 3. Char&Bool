@@ -1,0 +1,14 @@
+package com.nishantkumar;
+
+public class Main {
+
+    public static void main(String[] args) {
+	    char c = 'h';
+	    char copyrt = '\u00A9';
+        System.out.println(copyrt + "Manish");
+
+        boolean isMale = true;
+        if(isMale)
+            System.out.println("he is male");
+    }
+}
