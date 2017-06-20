@@ -1,0 +1,229 @@
+package com.nishant;
+
+/**
+ * Created by manis on 5/26/2017.
+ */
+public class PC {
+    private Case theCase;
+    private Monitor theMonitor;
+    private MotherBoard theMotherBoard;
+
+    public PC(Case theCase, Monitor theMonitor, MotherBoard theMotherBoard) {
+        this.theCase = theCase;
+        this.theMonitor = theMonitor;
+        this.theMotherBoard = theMotherBoard;
+    }
+
+    public void powerUp(){
+        theCase.pressPowerButton();
+        drawLogo();
+    }
+
+    private void drawLogo(){
+        // Fancy Logo
+        System.out.println("Drawing some fancy logo!!");
+        theMonitor.drawPixelAt(200,500, "Blue");
+    }
+
+}
+
+
+
+package com.nishant;
+
+/**
+ * Created by manis on 5/26/2017.
+ */
+public class Resolution {
+    private  int width;
+    private int height;
+
+    public Resolution(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+}
+
+package com.nishant;
+
+/**
+ * Created by manis on 5/26/2017.
+ */
+public class MotherBoard {
+    private String modelno;
+    private String manufacturer;
+    private int ramSlots;
+    private int cardSlots;
+    private String BIOS;
+
+    public MotherBoard(String modelno, String manufacturer, int ramSlots, int cardSlots, String BIOS) {
+        this.modelno = modelno;
+        this.manufacturer = manufacturer;
+        this.ramSlots = ramSlots;
+        this.cardSlots = cardSlots;
+        this.BIOS = BIOS;
+    }
+
+    public void loadPrograms(String programName){
+        System.out.println(programName + " Program is Loading !!");
+    }
+
+    public String getModelno() {
+        return modelno;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public int getRamSlots() {
+        return ramSlots;
+    }
+
+    public int getCardSlots() {
+        return cardSlots;
+    }
+
+    public String getBIOS() {
+        return BIOS;
+    }
+}
+
+package com.nishant;
+
+/**
+ * Created by manis on 5/26/2017.
+ */
+public class Monitor {
+    private  String model;
+    private String manufaturer;
+    private int size;
+    private Resolution nativeResolution; // This is composition.
+
+    public Monitor(String model, String manufaturer, int size, Resolution nativeResolution) {
+        this.model = model;
+        this.manufaturer = manufaturer;
+        this.size = size;
+        this.nativeResolution = nativeResolution;
+    }
+
+    public void drawPixelAt(int x, int y, String color){
+        System.out.println("Drawing Pixel at " + x + "," + y  + " in color " + color);
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getManufaturer() {
+        return manufaturer;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Resolution getNativeResolution() {
+        return nativeResolution;
+    }
+
+}
+
+
+
+package com.nishant;
+
+/**
+ * Created by manis on 5/26/2017.
+ */
+public class Dimmension {
+    private int height;
+    private int width;
+    private int depth;
+
+    public Dimmension(int height, int width, int depth) {
+        this.height = height;
+        this.width = width;
+        this.depth = depth;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getDepth(){
+        return depth;
+    }
+}
+
+
+
+
+package com.nishant;
+
+/**
+ * Created by manis on 5/26/2017.
+ */
+public class Case {
+    private String model;
+    private  String manufacturer;
+    private String powerSupply;
+    private Dimmension dimmension;
+
+    public Case(String model, String manufacturer, String powerSupply, Dimmension dimmension) {
+        this.model = model;
+        this.manufacturer = manufacturer;
+        this.powerSupply = powerSupply;
+        this.dimmension = dimmension;
+    }
+
+    public void pressPowerButton(){
+        System.out.println("Power Button Pressed !!");
+    }
+    public String getModel() {
+        return model;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public String getPowerSupply() {
+        return powerSupply;
+    }
+
+    public Dimmension getDimmension() {
+        return dimmension;
+    }
+}
+
+
+package com.nishant;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Dimmension dimmension = new Dimmension(20,20,5);
+        Case theCase = new Case("Z50-70","Lenovo","240", dimmension);
+        MotherBoard theMotherBoard = new MotherBoard("Core i5", "Intel", 2,1,"v 1.2");
+        Monitor theMonitor = new Monitor("Asus B-20","Asus",27,new Resolution(1280,720));
+        PC thePc = new PC(theCase,theMonitor,theMotherBoard);
+        thePc.powerUp();
+    }
+}
+
+
+
+
